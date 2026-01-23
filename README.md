@@ -1,7 +1,6 @@
 # Arknights: Endfield – 3DMigoto Loader
 
-This is a custom loader for running **3DMigoto** with  
-**Arknights: Endfield**.
+This is a 3DMigoto loader for **Arknights: Endfield**.
 
 
 ## How to use
@@ -10,15 +9,6 @@ This is a custom loader for running **3DMigoto** with
 2. Open the official game launcher.
 3. Enable **“Launch with DirectX 11”**.
 4. Launch the game.
-
----
-
-## What this does
-
-- Launches Arknights: Endfield
-- Injects 3DMigoto at startup
-
-This loader does **not** include the game itself.
 
 ---
 
