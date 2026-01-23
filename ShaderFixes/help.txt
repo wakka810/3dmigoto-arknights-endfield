@@ -1,0 +1,34 @@
+Genshin Impact Model Importer (GIMI) v7.0
+A version of 3dmigoto modified to work with genshin, by SilentNightSound
+
+Place extracted mods into the Mods folder and press F10 to reload
+You can find mods at the AGMG discord (https://discord.com/invite/agmg) and Gamebanana
+
+In cases where a mod is broken after an F10 reload, try removing the character from the party and teleporting or
+restarting the game to unload/reload the model - often, mods will fix themselves after that
+
+Commands:
+  F1: Show/Hide this help menu
+  F6: Toggle mods (note: some mods may not toggle properly depending on how the modder set it up, mostly card mods)
+  F10: Reload mods
+  Numpad0: Turns green hunting text on/off
+
+Developer Commands (dev/green text mode only):
+  F8: Perform frame dump
+  F9: Toggles mods while held
+  Ctrl+F9: Perfomance monitor
+
+Buffer Hunting (dev/green text mode only): 
+  Numpad + : Reset hunting buffers (good to do between hunts, to reduce number you need to cycle through)
+(first 2 cycle forward/backwards, last copies hash and dumps shader for VS/PS):
+  Numpad / * - : Cycles VB (Vertex Buffers)
+  Numpad 7 8 9 : Cycles IB (Index Buffers)
+  Numpad 4 5 6 : Cycles VS (Vertex Shaders)
+  Numpad 1 2 3 : Cycles PS (Pixel Shaders)
+
+For remaining commands, please read d3dx.ini
+
+Huge thank you to DarkStarSword, bo3b and Chiri for the base 3dmigoto!
+
+
+If you want to support GIMI development, please consider leaving a tip at https://ko-fi.com/silentnightsound
