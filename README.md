@@ -22,6 +22,11 @@ This is a 3DMigoto loader for **Arknights: Endfield**.
 
 ---
 
+3Dmigoto was built from this repository:
+https://github.com/wakka810/3Dmigoto
+
+---
+
 ## License
 
 This project is licensed under **GPL-3.0**.
