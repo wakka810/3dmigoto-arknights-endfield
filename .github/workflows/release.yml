@@ -1,0 +1,49 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Create source zip
+        id: package
+        run: |
+          set -euo pipefail
+          short_sha=$(git rev-parse --short=7 HEAD)
+          zip_name="3dmigoto-arknights-endfield-main.zip"
+          prefix="3dmigoto-arknights-endfield-main/"
+          git archive --format=zip --prefix="$prefix" HEAD -o "$zip_name"
+          sha256=$(sha256sum "$zip_name" | awk '{print $1}')
+          echo "short_sha=$short_sha" >> "$GITHUB_OUTPUT"
+          echo "zip_name=$zip_name" >> "$GITHUB_OUTPUT"
+          echo "sha256=$sha256" >> "$GITHUB_OUTPUT"
+
+      - name: Create or update release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          tag="${{ steps.package.outputs.short_sha }}"
+          zip="${{ steps.package.outputs.zip_name }}"
+          sha256="${{ steps.package.outputs.sha256 }}"
+          notes="Commit: $GITHUB_SHA\nsha256:$sha256"
+
+          if gh release view "$tag" >/dev/null 2>&1; then
+            gh release edit "$tag" --title "$tag" --notes "$notes" --latest
+            gh release upload "$tag" "$zip" --clobber
+          else
+            gh release create "$tag" "$zip" --title "$tag" --notes "$notes" --latest
+          fi
