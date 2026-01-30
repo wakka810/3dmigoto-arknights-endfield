@@ -39,7 +39,7 @@ jobs:
           tag="${{ steps.package.outputs.short_sha }}"
           zip="${{ steps.package.outputs.zip_name }}"
           sha256="${{ steps.package.outputs.sha256 }}"
-          notes="Commit: $GITHUB_SHA\nsha256:$sha256"
+          notes=$(printf 'Commit: %s\nsha256:%s' "$GITHUB_SHA" "$sha256")
 
           if gh release view "$tag" >/dev/null 2>&1; then
             gh release edit "$tag" --title "$tag" --notes "$notes" --latest
